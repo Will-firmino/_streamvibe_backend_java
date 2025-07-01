@@ -1,5 +1,7 @@
 package com.streamvibe.api.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +24,20 @@ public class FilmesController {
     @Transactional
     public void cadastrarFilme(@RequestBody DadosCadastroFilme dados) {
         repository.save(new Filme(dados));
+    }
+
+    // Aqui fica o READ
+    @GetMapping
+    public List<Filme> listarFilmes() {
+        return repository.findAll();
+    }
+
+    // Aqui fica o UPDATE
+    @PutMapping
+    @Transactional
+    public void atualizarFilme(@RequestBody Filme filme) {
+        // var filme = repository.findById(filme.id());
+
     }
 
     // Aqui fica o DELETE REAL
