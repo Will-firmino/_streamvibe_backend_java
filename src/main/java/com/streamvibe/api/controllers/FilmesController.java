@@ -17,10 +17,26 @@ public class FilmesController {
     @Autowired
     private FilmeRepository repository;
 
+    // Aqui fica o CREATE
     @PostMapping
     @Transactional
     public void cadastrarFilme(@RequestBody DadosCadastroFilme dados) {
         repository.save(new Filme(dados));
+    }
+
+    // Aqui fica o DELETE REAL
+    // @DeleteMapping("/{id}")
+    // @Transactional
+    // public void excluirFilmeReal(@PathVariable Integer id) {
+    // repository.deleteById(id);
+    // }
+
+    // Aqui fica a EXCLUSÃO LÓGICA
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluirFilmeLogico(@PathVariable Integer id) {
+        var filme = repository.getReferenceById(id);
+        filme.exclusaoLogica();
     }
 
 }
