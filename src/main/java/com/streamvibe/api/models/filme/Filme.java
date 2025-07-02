@@ -39,6 +39,9 @@ public class Filme {
         this.sinopse = dados.sinopse();
     }
 
+
+    
+
     public void exclusaoLogica() {
         this.ativo = false;
     }
