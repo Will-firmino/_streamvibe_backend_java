@@ -14,6 +14,7 @@ public class Filme {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    // nome, diretor, estudio
     private String nome;
     private String estudio;
     private double duracao;
@@ -39,11 +40,21 @@ public class Filme {
         this.sinopse = dados.sinopse();
     }
 
-
-    
-
     public void exclusaoLogica() {
         this.ativo = false;
+    }
+
+    public void atualizarInformacoes(DadosAtualizacaoFilme dados) {
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+        if (dados.estudio() != null) {
+            this.estudio = dados.estudio();
+        }
+        if (dados.diretor() != null) {
+            this.diretor = dados.diretor();
+        }
+
     }
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.streamvibe.api.models.filme.DadosAtualizacaoFilme;
 import com.streamvibe.api.models.filme.DadosCadastroFilme;
 import com.streamvibe.api.models.filme.Filme;
 import com.streamvibe.api.models.filme.FilmeRepository;
@@ -32,11 +33,13 @@ public class FilmesController {
         return repository.findAll();
     }
 
+    // nome, diretor, estudio
     // Aqui fica o UPDATE
     @PutMapping
     @Transactional
-    public void atualizarFilme(@RequestBody Filme filme) {
-        // var filme = repository.findById(filme.id());
+    public void atualizarFilme(@RequestBody DadosAtualizacaoFilme dados) {
+        var filme = repository.getReferenceById(dados.id());
+        filme.atualizarInformacoes(dados);
 
     }
 
